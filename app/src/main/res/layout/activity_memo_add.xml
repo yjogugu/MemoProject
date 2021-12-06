@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="color"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/memo_constraint"
+        android:background="@{color}"
+        android:forceDarkAllowed="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_background_color"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_brush"
+                android:background="?attr/selectableItemBackground"
+                android:stateListAnimator="@null"
+                android:forceDarkAllowed="false"
+                app:tint="@color/cursorColor" />
+            <Button
+                android:id="@+id/bt_ok"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="@string/ok"
+                android:textColor="@color/cursorColor"
+                android:background="@android:color/transparent" />
+
+        </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_memo_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title"
+            app:hintAnimationEnabled="true"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@null"
+            app:boxStrokeColor="@color/cursorColor"
+            android:textColorHint="@color/cursorColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/memo_title_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cursorColor"
+                android:background="@{color}"
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:maxLength="40" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <EditText
+            android:id="@+id/memo_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:padding="10dp"
+            android:hint="@string/memo_content"
+            android:textColor="@color/cursorColor"
+            android:textColorHint="@color/cursorColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_memo_input" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="memoviewmodel"
+            type="com.taijoo.potfolioproject.presentation.view.memo.MemoViewModel" />
+
+        <variable
+            name="mainActivity"
+            type="com.taijoo.potfolioproject.presentation.view.MainActivity" />
+
+    </data>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/dl_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.view.MainActivity">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:padding="10dp"
+                    android:tint="@color/color_000000"
+                    android:forceDarkAllowed="true"
+                    android:onClick="@{()->mainActivity.onMenuClick()}"
+                    android:src="@drawable/ic_menu"
+                    tools:ignore="UseAppTint" />
+
+                <com.robinhood.ticker.TickerView
+                    android:id="@+id/tiv_check_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/color_000000"
+                    android:textSize="18sp"
+                    android:text="@{String.valueOf(memoviewmodel.check_count)}"
+                    android:visibility="gone"
+                    app:ticker_animationDuration="300"
+                    app:ticker_defaultPreferredScrollingDirection="any" />
+
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"/>
+
+                <ImageView
+                    android:id="@+id/iv_calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_calendar"
+                    android:onClick="@{()->mainActivity.onCalendarClick()}"
+                    app:tint="@color/color_000000" />
+                <TextView
+                    android:id="@+id/tv_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:forceDarkAllowed="true"
+                    android:text="@{memoviewmodel.delete_string}"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_000000"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:background="@drawable/custom_ripple_effect"
+                    android:onClick="@{()->mainActivity.onDeleteOkClick(0)}"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_memo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:overScrollMode="never"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
+            <com.github.clans.fab.FloatingActionMenu
+                android:id="@+id/fab_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:menu_showShadow="true"
+                app:menu_colorNormal="@color/color_F76734"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" >
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_delete"
+                    android:scaleType="centerCrop"
+                    android:onClick="@{()->mainActivity.onMemoDeleteClick()}"
+                    app:fab_colorNormal="@color/color_F76734"
+                    app:fab_size="mini" />
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_edit_white"
+                    android:scaleType="centerCrop"
+                    android:onClick="@{()->mainActivity.onEditClick()}"
+                    app:fab_colorNormal="@color/color_F76734"
+                    app:fab_size="mini" />
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_memo_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->mainActivity.onMemoViewCountClick()}"
+                    app:fab_size="mini"
+                    app:fab_colorNormal="@color/color_F76734"
+                    android:src="@drawable/ic_apps"/>
+
+            </com.github.clans.fab.FloatingActionMenu>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <include
+            android:visibility="invisible"
+            android:id="@+id/item_drawer"
+            app:memoViewModel="@{memoviewmodel}"
+            app:mainActivity="@{mainActivity}"
+            layout="@layout/item_drawer" />
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</layout>

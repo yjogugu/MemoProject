@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.taijoo.potfolioproject.presentation.view.memo.MemoFragment" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.view.memo.MemoFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <FrameLayout
+                android:id="@+id/memo_frame_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="vertical"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                app:layout_anchorGravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/ib_memoAdd_start"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    android:src="@drawable/icon_menu"
+                    android:onClick="@{()->fragment.onMemoDialogClick()}"
+                    android:background="?attr/selectableItemBackground"
+                    android:stateListAnimator="@null"
+                    android:forceDarkAllowed="false"
+                    app:tint="@color/color_000000" />
+
+                <TextView
+                    android:id="@+id/tv_ok"
+                    android:visibility="invisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->fragment.onMemoDeleteOkClick()}"
+                    android:textColor="@color/color_000000"
+                    android:textSize="16sp"
+                    android:padding="5dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:text="@string/ok"/>
+
+            </FrameLayout>
+
+            <com.taijoo.potfolioproject.util.view.CustomRecyclerViewLayout
+                android:id="@+id/rv_memo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:overScrollMode="never"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/memo_frame_layout"
+                app:layout_constraintVertical_bias="1.0"
+                tools:layout_editor_absoluteX="-16dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </FrameLayout>
+</layout>

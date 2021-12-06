@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "162510805212",
+    "project_id": "potfolioproject",
+    "storage_bucket": "potfolioproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:162510805212:android:d3d068598b61df57af7c19",
+        "android_client_info": {
+          "package_name": "com.taijoo.potfolioproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "162510805212-mocarca63u0c4bqng8ig04iqj5a2j8di.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.taijoo.potfolioproject",
+            "certificate_hash": "6bd7fdcb973254288b5344a0542d64bd36ef538d"
+          }
+        },
+        {
+          "client_id": "162510805212-hmvk8tfikf2qevaqug5norgo1v7q0h5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIPPTSjGwascyARpUebjQDqSVX4fTuEjw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "162510805212-hmvk8tfikf2qevaqug5norgo1v7q0h5a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,174 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">PotfolioProject</string>
+
+<!--    <string name="server_client_id" translatable="false">288452856874-231cpm8tbkv5uqmgughav04f8agpeuni.apps.googleusercontent.com</string>-->
+    <string name="server_client_id" translatable="false">162510805212-hmvk8tfikf2qevaqug5norgo1v7q0h5a.apps.googleusercontent.com</string>
+
+    <string name="add">추가</string>
+    <string name="minus">빼기</string>
+
+
+    <string name="size">%d</string>
+
+    <string name="yes">네</string>
+    <string name="check">확인</string>
+    <string name="no">아니요</string>
+
+    <string name="ok">완료</string>
+    <string name="cancel">취소</string>
+    <string name="ok_en">Ok</string>
+
+    <string name="menu">메뉴</string>
+    <string name="memo">메모장</string>
+    <string name="calendar">달력</string>
+
+    <string name="remove">삭제</string>
+    <string name="scaling">배율</string>
+
+
+    <string name="span_count1">1X</string>
+    <string name="span_count2">2X</string>
+    <string name="span_count3">3X</string>
+    <string name="span_count4">4X</string>
+    <string name="span_count5">5X</string>
+
+    <string name="background_color">배경색상</string>
+    <string name="text_color">글자색상</string>
+
+    <string name="icon_animation">icon_animation</string>
+    <string name="icon_main_animation">icon_main_animation</string>
+
+
+    <string name="copy">복사</string>
+    <string name="delete">삭제</string>
+
+    <string name="icon_remove_message">삭제 하시겠습니까.?</string>
+
+    <string name="alert_yes">네</string>
+    <string name="alert_no">아니요</string>
+    <string name="alert_no_en">No</string>
+
+    <string name="Memo">Memo</string>
+    <string name="Map">Map</string>
+    <string name="Photo">Photo</string>
+    <string name="User">User</string>
+
+    <string name="Writing">글 작성</string>
+    <string name="Upload">업로드</string>
+    <string name="Image_Choice">사진 선택</string>
+    <string name="Retrofit_Failure">서버에 문제가 생겼습니다 잠시후 다시 이용해주시길 바랍니다.</string>
+
+    <string name="just_a_moment_ago">방금 전</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="title">제목</string>
+
+    <string name="memo_title_error">40자까지 입력할 수 있습니다.</string>
+    <string name="memo_content">내용</string>
+
+    <string name="delete_message_title">메모 %d개 삭제</string>
+    <string name="delete_message_content">정말 선택한 메모를 삭제하시겠습니까?</string>
+
+    <string name="setting_profile_name_change">프로필 사진/ 이름 변경</string>
+    <string name="setting_server_remove">구글 계정으로 연결하기</string>
+    <string name="setting_server_add">구글 계정 연결완료</string>
+
+    <string name="Snackbar_server_link_close">구글 계정의 연결 종료 되었습니다.</string>
+    <string name="Snackbar_server_link_open">구글 계정의 연결 완료 되었습니다.</string>
+    <string name="Snackbar_server_link_false">구글 계정의 연결이 실패 하였습니다.</string>
+
+    <string name="Snackbar_server_link_false_v2">서버와의 연결이 실패 하였습니다.</string>
+
+    <string name="customDialog_title_1">연결 종료</string>
+    <string name="customDialog_content_1">구글 계정의 연결을 정말 종료 하시겠니까?</string>
+
+    <string name="opensource">오픈소스</string>
+    <string name="friendList">친구목록</string>
+    <string name="friendManaging">친구관리</string>
+
+    <string name="channelId">notification</string>
+
+    <string name="CustomDialogCalendarTitle">캘린더 저장</string>
+    <string name="CustomDialogCalendarContentSave">캘린더를 저장 하시겠습니까?</string>
+    <string name="CustomDialogCalendarContentDelete">캘린더를 삭제 하시겠습니까?</string>
+
+    <string name="opensource_Title">FreeMemo OpenSource Android</string>
+    <string name="opensource_List" tools:ignore="Typos">
+        <b>clans fab</b>\n
+        https://github.com/Clans/FloatingActionButton\n
+        Apache-2.0 License\n\n
+
+        <b>Jetpack Compose</b>\n
+        https://developer.android.com/jetpack/compose/documentation\n\n
+
+        <b>ViewModel</b>\n
+        https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-ktx/2.0.0-alpha1\n
+        Apache-2.0 License\n\n
+
+        <b>LiveData</b>\n
+        https://developer.android.com/topic/libraries/architecture/adding-components?hl=ko\n
+        Apache-2.0 License\n\n
+
+        <b>Room</b>\n
+        https://github.com/googlecodelabs/android-room-with-a-view\n
+        Apache-2.0 License\n\n
+
+        <b>Data Binding</b>\n
+        https://github.com/googlecodelabs/android-databinding\n
+        Apache-2.0 License\n\n
+
+        <b>Flow</b>\n
+        https://github.com/MindorksOpenSource/Kotlin-Flow-Android-Examples\n
+        Apache-2.0 License\n\n
+
+        <b>Paging 3</b>\n
+        https://developer.android.com/jetpack/androidx/releases/paging?hl=ko\n
+        Apache-2.0 License\n\n
+
+        <b>CardView</b>\n
+        https://github.com/googlearchive/android-CardView\n
+        Apache-2.0 License\n\n
+
+        <b>RoundedImageView</b>\n
+        https://github.com/vinc3m1/RoundedImageView\n
+        Apache-2.0 License\n\n
+
+        <b>Gson</b>\n
+        https://github.com/google/gson\n
+        Apache-2.0 License\n\n
+
+        <b>Retrofit2</b>\n
+        https://square.github.io/retrofit/\n
+        Apache-2.0 License\n\n
+
+        <b>okhttp3</b>\n
+        https://square.github.io/okhttp/\n
+        Apache-2.0 License\n\n
+
+        <b>coroutines</b>\n
+        https://github.com/Kotlin/kotlinx.coroutines\n
+        Apache-2.0 License\n\n
+
+        <b>lottie</b>\n
+        https://github.com/airbnb/lottie-android\n
+        Apache-2.0 License\n\n
+
+        <b>jsoup</b>\n
+        https://github.com/jhy/jsoup/\n
+        MIT License\n\n
+
+        <b>glide</b>\n
+        https://github.com/bumptech/glide\n
+        Apache-2.0 License\n\n
+
+        <b>serialization</b>\n
+        https://github.com/Kotlin/kotlinx.serialization\n
+        Apache-2.0 License\n\n
+
+        <b>PowerSpinner</b>\n
+        https://github.com/skydoves/PowerSpinner
+        Apache-2.0 License\n\n
+    </string>
+</resources>
