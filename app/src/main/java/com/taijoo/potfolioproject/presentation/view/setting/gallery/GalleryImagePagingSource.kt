@@ -3,6 +3,7 @@ package com.taijoo.potfolioproject.presentation.view.setting.gallery
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -30,7 +31,6 @@ class GalleryImagePagingSource(private val galleryCursor: GalleryCursor, private
         val page = params.key ?: INIT_PAGE_INDEX
 
         return try {
-
             val items = galleryCursor.getImagePath(context,page,params.loadSize,type,folder)
 
             val requestOptions: RequestOptions = RequestOptions()

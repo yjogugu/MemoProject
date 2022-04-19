@@ -57,6 +57,7 @@ import com.google.android.gms.tasks.Task
 import com.google.android.gms.common.api.ApiException
 import com.taijoo.potfolioproject.presentation.view.MainActivity
 import com.google.android.gms.tasks.OnCompleteListener
+
 import com.google.firebase.messaging.FirebaseMessaging
 import com.taijoo.potfolioproject.presentation.view.friend.FriendListActivity
 import com.taijoo.potfolioproject.util.SnackbarCustom
@@ -177,7 +178,9 @@ class SettingActivity : AppCompatActivity(), SettingInterface {
     @RequiresApi(Build.VERSION_CODES.P)
     fun onGalleryClick(){
         val intent : Intent = Intent(this, GalleryActivity::class.java)
+        binding.collapsingToolbar.setOnClickListener {
 
+        }
         //startActivityForResult 대신 사용
         resultLauncher.launch(intent)
 
@@ -417,6 +420,7 @@ class SettingActivity : AppCompatActivity(), SettingInterface {
 
 
                 SnackbarCustom().snackBar(binding.collapsingToolbar,getString(R.string.Snackbar_server_link_open)).show()
+
 
                 FirebaseMessaging.getInstance().token.addOnCompleteListener(
                     OnCompleteListener { task ->

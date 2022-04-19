@@ -73,6 +73,13 @@
                         android:background="@color/color_1B1B1B"
                         android:src="@drawable/zoom_out"/>
                 </LinearLayout>
+
+
+                <CheckBox
+                    android:id="@+id/cb_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"/>
             </FrameLayout>
 
 

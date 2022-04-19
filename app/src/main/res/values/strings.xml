@@ -32,6 +32,8 @@
     <string name="span_count4">4X</string>
     <string name="span_count5">5X</string>
 
+    <string name="friendAdd">친구 추가</string>
+
     <string name="background_color">배경색상</string>
     <string name="text_color">글자색상</string>
 

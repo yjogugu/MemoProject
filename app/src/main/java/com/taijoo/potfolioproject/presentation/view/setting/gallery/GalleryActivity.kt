@@ -12,15 +12,11 @@ import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
 import androidx.recyclerview.widget.GridLayoutManager
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.*
 import android.net.Uri
 import android.os.Build
-import android.util.Log
 import android.view.View
 import android.widget.*
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 
 import androidx.core.content.ContextCompat
@@ -30,6 +26,7 @@ import com.taijoo.potfolioproject.data.model.FolderData
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class GalleryActivity : AppCompatActivity() , GalleryInterface {
@@ -114,6 +111,7 @@ class GalleryActivity : AppCompatActivity() , GalleryInterface {
     @RequiresApi(Build.VERSION_CODES.O)
     private suspend fun getImagePath(type: Int , folder : String) {
         viewModel.getGalleryPath(galleryCursor,type,folder,pageSize).collectLatest {
+            adapter.setFolder(folder)
             adapter.submitData(it)//페이징 하는곳
         }
 
@@ -175,12 +173,17 @@ class GalleryActivity : AppCompatActivity() , GalleryInterface {
         }
     }
 
-    override fun onImageClick(uri: Uri) {
+    override fun onImageClick(list: ArrayList<Uri>) {
 
-        val intent : Intent = Intent()
-        intent.putExtra("uri" , uri.toString())
-        setResult(RESULT_OK,intent)
-        finish()
+        if(list.size >= 8){
+            Toast.makeText(this,"최대 8장까지 설정 가능합니다.",Toast.LENGTH_SHORT).show()
+        }
+
+
+//        val intent : Intent = Intent()
+//        intent.putExtra("uri" , uri.toString())
+//        setResult(RESULT_OK,intent)
+//        finish()
 
     }
 

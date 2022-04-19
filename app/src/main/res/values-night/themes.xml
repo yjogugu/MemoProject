@@ -16,6 +16,7 @@
 
         <item name="windowNoTitle">true</item>
 
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">

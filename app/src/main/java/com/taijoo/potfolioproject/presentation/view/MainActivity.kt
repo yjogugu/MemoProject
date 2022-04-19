@@ -117,12 +117,12 @@ class MainActivity : AppCompatActivity() ,MemoDeleteClickInterface{
         //User Livedata 옵저블 패턴
         viewModel.userData.observe(this,{
             if(it.network_state){
-                binding.itemDrawer.llTest.visibility = View.VISIBLE
+                binding.itemDrawer.llFriend.visibility = View.VISIBLE
 //                val intent = Intent(applicationContext, MyService::class.java)
 //                startService(intent)
             }
             else{
-                binding.itemDrawer.llTest.visibility = View.GONE
+                binding.itemDrawer.llFriend.visibility = View.GONE
             }
         })
 

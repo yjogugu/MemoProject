@@ -17,6 +17,7 @@ class OpenSourceActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this , R.layout.activity_open_source)
 
         binding.apply {
+            activity = this@OpenSourceActivity
             lifecycleOwner = this@OpenSourceActivity
         }
 

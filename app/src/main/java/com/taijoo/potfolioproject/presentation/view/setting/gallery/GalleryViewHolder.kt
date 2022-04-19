@@ -1,18 +1,11 @@
 package com.taijoo.potfolioproject.presentation.view.setting.gallery
 
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
 import android.net.Uri
-import android.provider.Settings
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.Priority
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
 import com.taijoo.potfolioproject.data.model.GalleryData
 import com.taijoo.potfolioproject.databinding.ItemGalleryImageBinding
 import java.text.SimpleDateFormat
@@ -20,9 +13,8 @@ import java.text.SimpleDateFormat
 
 class GalleryViewHolder(var binding : ItemGalleryImageBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(galleryData : GalleryData){
+    fun bind(galleryData : GalleryData, imgList : ArrayList<Uri>, galleryInterface :GalleryInterface){
 
-//        binding.idIVImage.layout(0,0,0,0)
         binding.uri = galleryData.uri.toString()
 
         if(galleryData.type == 3){
@@ -34,6 +26,39 @@ class GalleryViewHolder(var binding : ItemGalleryImageBinding) : RecyclerView.Vi
         }
 
 
+        binding.cbImage.setOnCheckedChangeListener(null)
+
+        binding.cbImage.isChecked = galleryData.isCheck != 0
+
+
+
+        binding.cbImage.setOnCheckedChangeListener { compoundButton, isCheck ->
+
+            if(isCheck){
+                galleryData.isCheck = 1
+                imgList.add(galleryData.uri)
+
+                if(imgList.size > 8){
+                    binding.cbImage.isChecked = false
+                    galleryData.isCheck = 0
+                    imgList.remove(galleryData.uri)
+                }
+
+            }
+            else{
+                galleryData.isCheck = 0
+                imgList.remove(galleryData.uri)
+            }
+
+
+            Log.e("여기","ㅇ "+imgList)
+            galleryInterface.onImageClick(imgList)
+
+        }
+
+        binding.idIVImage.setOnClickListener {
+            binding.cbImage.isChecked = !binding.cbImage.isChecked
+        }
 
     }
 

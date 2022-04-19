@@ -40,6 +40,7 @@
             android:name=".MyService"
             android:enabled="true"
             android:exported="true" />
+
         <service
             android:name=".MyFireBaseMessagingService"
             android:exported="true">
@@ -47,6 +48,8 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service> <!-- FCM 백그라운드 아이콘 -->
+
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_checkbox_star" /> <!-- FCM 백그라운드 타이틀 색상 -->

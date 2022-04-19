@@ -95,7 +95,7 @@ class GalleryCursor {
                     val photoUrl = Uri.withAppendedPath(uri,""+cursor.getLong(cursor.getColumnIndex(
                         MediaStore.Files.FileColumns._ID)))
 
-                    imagePaths.add(GalleryData(id , photoUrl , type , title , date))
+                    imagePaths.add(GalleryData(id , photoUrl , type , title , date , 0))
 
                 } while (cursor.moveToNext())
 

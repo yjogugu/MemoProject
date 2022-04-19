@@ -2,10 +2,9 @@ package com.taijoo.potfolioproject.presentation.view.setting.gallery
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +18,9 @@ class GalleryAdapter() : PagingDataAdapter<GalleryData,RecyclerView.ViewHolder>(
     var context : Context? = null
     var Viewtype : Int = 0
     var galleryInterface : GalleryInterface? = null
+    private var folder =""
+
+    private var imgList = ArrayList<Uri>()
 
     constructor(context : Context , Viewtype : Int) : this() {
         this.context = context
@@ -31,6 +33,9 @@ class GalleryAdapter() : PagingDataAdapter<GalleryData,RecyclerView.ViewHolder>(
         this.galleryInterface = galleryInterface
     }
 
+    fun setFolder(folder : String){
+        this.folder = folder
+    }
     companion object {
         private val DIFF = object: DiffUtil.ItemCallback<GalleryData>() {
             override fun areItemsTheSame(oldItem: GalleryData, newItem: GalleryData): Boolean {
@@ -75,15 +80,15 @@ class GalleryAdapter() : PagingDataAdapter<GalleryData,RecyclerView.ViewHolder>(
         //갤러리 이미지 보여주기
         if(holder is GalleryViewHolder){
 
-            holder.bind(getItem(position)!!)
-
-            holder.binding.idIVImage.setOnClickListener {
-                galleryInterface?.onImageClick(getItem(position)!!.uri)
-            }
+            holder.bind(getItem(position)!!,imgList, galleryInterface!!)
+//            holder.binding.cbImage.setOnClickListener {
+////                galleryInterface?.onImageClick(getItem(position)!!.uri)
+//            }
 
             holder.binding.llZoomOut.setOnClickListener {
                 val intent = Intent(context , GalleryZoomOutActivity::class.java)
                 intent.putExtra("position",position)
+                intent.putExtra("folder",folder)
                 context?.startActivity(intent)
             }
         }

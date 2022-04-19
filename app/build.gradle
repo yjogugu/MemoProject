@@ -64,6 +64,9 @@ dependencies {
 
     def lifecycle_version = "2.4.0"
 
+    //popup 라이브러리
+    implementation "com.github.skydoves:balloon:1.4.0"
+
     //캘린더 오픈소스
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
 

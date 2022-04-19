@@ -39,13 +39,11 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
 
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
+
             val pendingIntent = PendingIntent.getActivity(
                 this,
-                0,
-                intent,
-                PendingIntent.FLAG_CANCEL_CURRENT
+                0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
-
             val title = remoteMessage.data["title"]
             val body = remoteMessage.data["body"]
 

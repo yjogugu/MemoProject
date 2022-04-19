@@ -24,9 +24,9 @@ class GalleryZoomOutActivity : AppCompatActivity(){
     lateinit var adapter: GalleryAdapter
     lateinit var viewModel : GalleryViewModel
     private  var galleryCursor: GalleryCursor = GalleryCursor()
-
+    private var folder = ""
     var imgPosition = 0
-
+    private var folderType = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -45,7 +45,11 @@ class GalleryZoomOutActivity : AppCompatActivity(){
     fun init(){
 
         imgPosition = intent.getIntExtra("position",0)//갤러리에서 선택한 포지션 받아오기
+        folder = intent.getStringExtra("folder")!!
 
+        if(folder != ""){
+            folderType = 1
+        }
 
         val snapHelper : SnapHelper = PagerSnapHelper()
         adapter = GalleryAdapter(this,1)
@@ -57,7 +61,7 @@ class GalleryZoomOutActivity : AppCompatActivity(){
         binding.rvZoomOut.adapter = adapter
 
         lifecycleScope.launch {
-            getImagePath(0,"")
+            getImagePath(folderType,folder)
         }
 
     }

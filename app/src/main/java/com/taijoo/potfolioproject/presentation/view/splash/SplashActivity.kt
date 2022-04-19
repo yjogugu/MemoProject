@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.tasks.OnCompleteListener
+
 import com.google.firebase.messaging.FirebaseMessaging
 import com.taijoo.potfolioproject.R
 import com.taijoo.potfolioproject.data.repository.room.entity.User
@@ -57,6 +58,8 @@ class SplashActivity : AppCompatActivity() {
                     }
                     else{
                         if(networkCheck.isNetworkAvailable(applicationContext) && it.network_state){//네트워크 체크
+
+
                             FirebaseMessaging.getInstance().token.addOnCompleteListener(
                                 OnCompleteListener { task ->
                                 if(!task.isSuccessful){
