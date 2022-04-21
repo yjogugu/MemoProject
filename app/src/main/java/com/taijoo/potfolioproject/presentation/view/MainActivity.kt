@@ -78,7 +78,6 @@ class MainActivity : AppCompatActivity() ,MemoDeleteClickInterface{
             lifecycleOwner = this@MainActivity
         }
 
-
         init()
     }
 

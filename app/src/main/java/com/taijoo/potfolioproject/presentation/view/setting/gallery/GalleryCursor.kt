@@ -7,6 +7,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import com.taijoo.potfolioproject.data.model.GalleryData
@@ -33,6 +34,7 @@ class GalleryCursor {
 
         val selection : String
         val selectionArgs :Array<String>
+
 
         //전체 목록
         if(folderType == 0){
@@ -95,7 +97,13 @@ class GalleryCursor {
                     val photoUrl = Uri.withAppendedPath(uri,""+cursor.getLong(cursor.getColumnIndex(
                         MediaStore.Files.FileColumns._ID)))
 
-                    imagePaths.add(GalleryData(id , photoUrl , type , title , date , 0))
+                    if(imagePaths.size == 0 ){//첫 아이템은 카메라 촬영 아이템
+                        imagePaths.add(0,GalleryData(-1,Uri.parse(""),-1,"Camera","0000",0))
+                    }
+                    else{
+                        imagePaths.add(GalleryData(id , photoUrl , type , title , date , 0))
+                    }
+
 
                 } while (cursor.moveToNext())
 

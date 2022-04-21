@@ -151,12 +151,23 @@ object BindingAdapter {
             .centerCrop()
             .priority(Priority.LOW)
 
-        Glide.with(imageView.context)
-            .load(url)
-            .apply(requestOptions)
-            .thumbnail(0.1f)
-            .dontAnimate()
-            .into(imageView)
+        if(url == ""){
+            Glide.with(imageView.context)
+                .load(imageView.context.getDrawable(R.drawable.alarm))
+                .apply(requestOptions)
+                .thumbnail(0.1f)
+                .dontAnimate()
+                .into(imageView)
+        }
+        else{
+            Glide.with(imageView.context)
+                .load(url)
+                .apply(requestOptions)
+                .thumbnail(0.1f)
+                .dontAnimate()
+                .into(imageView)
+        }
+
 
 
     }

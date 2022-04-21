@@ -96,6 +96,9 @@
     <string name="CustomDialogCalendarContentSave">캘린더를 저장 하시겠습니까?</string>
     <string name="CustomDialogCalendarContentDelete">캘린더를 삭제 하시겠습니까?</string>
 
+
+    <string name="GalleryMessage1">문제가 생겼습니다 다시 시도해주시길 바랍니다.</string>
+
     <string name="opensource_Title">FreeMemo OpenSource Android</string>
     <string name="opensource_List" tools:ignore="Typos">
         <b>clans fab</b>\n

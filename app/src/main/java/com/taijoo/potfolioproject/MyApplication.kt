@@ -26,3 +26,4 @@ class MyApplication : Application() {
     lateinit var mainActivity: MainActivity
 
 }
+

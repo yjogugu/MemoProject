@@ -113,51 +113,88 @@ class SettingActivity : AppCompatActivity(), SettingInterface {
 
         item.add(SettingData(0,0,getString(R.string.setting_profile_name_change),R.drawable.basics_profile))
 
-        settingViewModel.userData.observe(this,{
-            if(settingViewModel.observerType == 0){//기본
+        settingViewModel.userData.observe(this) {
+            if (settingViewModel.observerType == 0) {//기본
 
-                if(it.network_state){//서버랑 연결 되었을때
-                    item.add(SettingData(0,1,getString(R.string.setting_server_add),R.drawable.leak_add,it.network_state))
-                    item.add(SettingData(0,2,getString(R.string.friendManaging),R.drawable.ic_friend))
+                if (it.network_state) {//서버랑 연결 되었을때
+                    item.add(
+                        SettingData(
+                            0,
+                            1,
+                            getString(R.string.setting_server_add),
+                            R.drawable.leak_add,
+                            it.network_state
+                        )
+                    )
+                    item.add(
+                        SettingData(
+                            0,
+                            2,
+                            getString(R.string.friendManaging),
+                            R.drawable.ic_friend
+                        )
+                    )
 //                    item.add(SettingData(0,2,getString(R.string.opensource),R.drawable.ic_edit))
+                } else {//서버와 연결이 안되었을때
+                    item.add(
+                        SettingData(
+                            0,
+                            1,
+                            getString(R.string.setting_server_remove),
+                            R.drawable.leak_remove
+                        )
+                    )
                 }
-                else{//서버와 연결이 안되었을때
-                    item.add(SettingData(0,1,getString(R.string.setting_server_remove),R.drawable.leak_remove))
-                }
 
-                adapter.setData(item,0)
+                adapter.setData(item, 0)
 
 
-            }
-            else if(settingViewModel.observerType == 1){//서버 연결상태 바뀌었을때
+            } else if (settingViewModel.observerType == 1) {//서버 연결상태 바뀌었을때
 
-                if(it.network_state){//서버랑 연결 되었을때
-                    item[1] = SettingData(0,1,getString(R.string.setting_server_add),R.drawable.leak_add , it.network_state)
+                if (it.network_state) {//서버랑 연결 되었을때
+                    item[1] = SettingData(
+                        0,
+                        1,
+                        getString(R.string.setting_server_add),
+                        R.drawable.leak_add,
+                        it.network_state
+                    )
 
-                    item.add(SettingData(0,2,getString(R.string.friendManaging),R.drawable.ic_friend))
+                    item.add(
+                        SettingData(
+                            0,
+                            2,
+                            getString(R.string.friendManaging),
+                            R.drawable.ic_friend
+                        )
+                    )
 //                    item.add(SettingData(0,2,getString(R.string.opensource),R.drawable.ic_edit))
 
-                    adapter.setData(item,1)
+                    adapter.setData(item, 1)
 
 
-                }
-                else {//서버와 연결이 안되었을때
-                    item[1] = SettingData(0,1,getString(R.string.setting_server_remove),R.drawable.leak_remove , it.network_state)
+                } else {//서버와 연결이 안되었을때
+                    item[1] = SettingData(
+                        0,
+                        1,
+                        getString(R.string.setting_server_remove),
+                        R.drawable.leak_remove,
+                        it.network_state
+                    )
 
                     val arrayListUtil = ArrayListUtil<SettingData>()
                     item = arrayListUtil.arrayRemove(item)
-                    adapter.setData(item,2)
+                    adapter.setData(item, 2)
 
                 }
 
-            }
-            else if(settingViewModel.observerType == 99){//구글 로그인 예외
-                adapter.notifyItemChanged(1,false)
+            } else if (settingViewModel.observerType == 99) {//구글 로그인 예외
+                adapter.notifyItemChanged(1, false)
             }
 
             settingViewModel.observerType = -1
 
-        })
+        }
 
 
         adapter = SettingAdapter(item,this)

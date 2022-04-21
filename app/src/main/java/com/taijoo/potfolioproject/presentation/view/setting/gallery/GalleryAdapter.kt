@@ -36,6 +36,11 @@ class GalleryAdapter() : PagingDataAdapter<GalleryData,RecyclerView.ViewHolder>(
     fun setFolder(folder : String){
         this.folder = folder
     }
+
+    fun setData(uri : Uri){
+//        getItem()
+    }
+
     companion object {
         private val DIFF = object: DiffUtil.ItemCallback<GalleryData>() {
             override fun areItemsTheSame(oldItem: GalleryData, newItem: GalleryData): Boolean {

@@ -4,7 +4,7 @@ import android.net.Uri
 
 interface GalleryInterface {
 
-    fun onImageClick(list : ArrayList<Uri>)
+    fun onImageClick(position : Int , list : ArrayList<Uri>)
 
 
 }
