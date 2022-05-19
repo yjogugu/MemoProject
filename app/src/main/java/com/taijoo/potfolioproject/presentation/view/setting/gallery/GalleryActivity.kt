@@ -11,13 +11,14 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.os.ParcelFileDescriptor
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -32,9 +33,7 @@ import com.taijoo.potfolioproject.databinding.ActivityGalleryBinding
 import com.taijoo.potfolioproject.util.SnackbarCustom
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.io.File
-import java.io.IOException
-import java.io.OutputStream
+import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -191,19 +190,8 @@ class GalleryActivity : AppCompatActivity() , GalleryInterface {
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onImageClick(position : Int, list: ArrayList<Uri>) {
         if(position == 0){//카메라 선택
-            var photoFile : File? = null
 
-            try {
-                photoFile = createImageFile()
-                val photoURI : Uri = FileProvider.getUriForFile(this, "$packageName.provider", photoFile)
-
-                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                intent.putExtra(MediaStore.EXTRA_OUTPUT,photoURI)
-                resultLauncher.launch(intent)
-
-            } catch (ex : IOException) {
-                snackbarCustom.snackBar(binding.clGallery,getString(R.string.GalleryMessage1)).show()
-            }
+            galleryItemSelect()
 
         }
         else{
@@ -214,14 +202,71 @@ class GalleryActivity : AppCompatActivity() , GalleryInterface {
 
     }
 
+
+    //사진,영상 촬영 선택
+    @RequiresApi(Build.VERSION_CODES.Q)
+    fun galleryItemSelect(){
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle("촬영")
+
+        builder.setItems(R.array.GalleryItemSelect, DialogInterface.OnClickListener { dialog, pos ->
+
+            when (pos){
+                0->{//사진 촬영
+
+                    try {
+                        val photoFile = createImageFile()
+
+                        val photoURI : Uri = FileProvider.getUriForFile(this, "$packageName.provider", photoFile)
+                        cameraUri = photoFile.absolutePath
+
+                        //이미지
+                        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT,photoURI)
+                        resultLauncher.launch(intent)
+
+
+
+                    } catch (ex : IOException) {
+                        snackbarCustom.snackBar(binding.clGallery,getString(R.string.GalleryMessage1)).show()
+                    }
+
+                }
+                1->{//영상 촬영
+
+                    try {
+                        val photoFile = createVideoFile()
+                        val photoURI : Uri = FileProvider.getUriForFile(this, "$packageName.provider", photoFile)
+
+                        cameraUri = photoURI.toString()
+
+                        //동영상
+                        val intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT,photoURI)
+                        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1)
+                        intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 30)
+                        videoResultLauncher.launch(intent)
+
+
+                    } catch (ex : IOException) {
+                        snackbarCustom.snackBar(binding.clGallery,getString(R.string.GalleryMessage1)).show()
+                    }
+
+                }
+            }
+        })
+
+        val alertDialog = builder.create()
+        alertDialog.show()
+    }
+
     //카메라 로 사진 찍은 이후
     @RequiresApi(Build.VERSION_CODES.Q)
     private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            val data: Intent? = result.data
             val file = File(cameraUri)
             var bitmap : Bitmap? = null
-
             try {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
                     val source = ImageDecoder.createSource(contentResolver, Uri.fromFile(file))
@@ -253,19 +298,61 @@ class GalleryActivity : AppCompatActivity() , GalleryInterface {
 
     }
 
-    //파일 이름 생성
+    //카메라 로 사진 찍은 이후
+    @RequiresApi(Build.VERSION_CODES.Q)
+    private var videoResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result->
+        if (result.resultCode == Activity.RESULT_OK) {
+
+            saveVideo(Uri.parse(cameraUri))
+            adapter.refresh()
+            lifecycleScope.launch {
+                getImagePath(0,"")
+            }
+
+        }
+        else{
+            try {
+                //캐시 파일 삭제
+                val file = File(cameraUri)
+                contentResolver.delete(Uri.fromFile(file), null, null)
+            }
+            catch (e : Exception){
+
+            }
+        }
+    }
+
+    //이미지파일 이름 생성
     @Throws(IOException::class)
     private fun createImageFile() : File{
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss",Locale.KOREA).format(Date())
         val imageFileName = "JPEG_" + timeStamp + "_";
-        val storageDir = getExternalFilesDir(Environment.DIRECTORY_DCIM);
+        val storageDir = getExternalFilesDir(Environment.DIRECTORY_DCIM)
         val image = File.createTempFile(
             imageFileName,  /* prefix */
             ".jpg",         /* suffix */
             storageDir      /* directory */
         )
-        cameraUri = image.absolutePath
         return image
+    }
+
+    //동영상파일 이름 생성
+    @Throws(IOException::class)
+    private fun createVideoFile() : File{
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss",Locale.KOREA).format(Date())
+        val videoFileName = "MP4_" + timeStamp + "_"
+        val storageDir = getExternalFilesDir(Environment.DIRECTORY_DCIM)
+        val video = File.createTempFile(
+            videoFileName,  /* prefix */
+            ".mp4",         /* suffix */
+            storageDir      /* directory */
+        )
+        return video
+    }
+
+    //파일 이름 정하기
+    private fun randomFileName(): String {
+        return SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(System.currentTimeMillis())
     }
 
     //이미지 갤러리에 저장
@@ -300,9 +387,54 @@ class GalleryActivity : AppCompatActivity() , GalleryInterface {
         }
     }
 
+    //동영상 갤러리에 저장
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    private fun saveVideo(uri3: Uri) {
+        val videoFileName = "video_" + System.currentTimeMillis() + ".mp4"
 
-    //파일 이름 정하기
-    private fun randomFileName(): String {
-        return SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(System.currentTimeMillis())
+        val valuesVideos: ContentValues = ContentValues()
+        valuesVideos.put(MediaStore.Video.Media.RELATIVE_PATH, "DCIM/images")
+        valuesVideos.put(MediaStore.Video.Media.TITLE, videoFileName)
+        valuesVideos.put(MediaStore.Video.Media.DISPLAY_NAME, videoFileName)
+        valuesVideos.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4")
+        valuesVideos.put(MediaStore.Video.Media.DATE_ADDED, System.currentTimeMillis() / 1000)
+        valuesVideos.put(MediaStore.Video.Media.DATE_TAKEN, System.currentTimeMillis())
+        valuesVideos.put(MediaStore.Video.Media.IS_PENDING, 1)
+
+        val resolver = contentResolver
+        val collection = MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY) //기본 외부 스토리지에 있는 모든 비디오 파일
+        val uriSavedVideo = resolver.insert(collection, valuesVideos)
+        val pfd: ParcelFileDescriptor?
+        try {
+            pfd = contentResolver.openFileDescriptor(uriSavedVideo!!, "w")
+            assert(pfd != null)
+            val out = FileOutputStream(pfd!!.fileDescriptor)
+
+            // 여기에서 파일 입력 스트림으로 이미 저장된 비디오를 가져옵니다.
+            val `in` = contentResolver.openInputStream(uri3)
+            val buf = ByteArray(8192)
+            var len: Int
+            var progress = 0
+            while (`in`!!.read(buf).also { len = it } > 0) {
+                progress += len
+                out.write(buf, 0, len)
+            }
+            out.close()
+            `in`.close()
+            pfd.close()
+            valuesVideos.clear()
+            valuesVideos.put(MediaStore.Video.Media.IS_PENDING, 0)
+            valuesVideos.put(
+                MediaStore.Video.Media.IS_PENDING,
+                0
+            ) //보류 중인 파일이 0으로 바뀔 때까지 앱에서만 파일을 볼 수 있습니다.
+            contentResolver.update(uriSavedVideo, valuesVideos, null, null)
+
+        } catch (e: java.lang.Exception) {
+            Toast.makeText(this, "error: " + e.message, Toast.LENGTH_SHORT).show()
+            e.printStackTrace()
+        }
     }
+
+
 }

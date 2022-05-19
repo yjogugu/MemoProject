@@ -100,10 +100,10 @@ class GalleryCursor {
                     if(imagePaths.size == 0 ){//첫 아이템은 카메라 촬영 아이템
                         imagePaths.add(0,GalleryData(-1,Uri.parse(""),-1,"Camera","0000",0))
                     }
-                    else{
-                        imagePaths.add(GalleryData(id , photoUrl , type , title , date , 0))
-                    }
-
+//                    else{
+//                        imagePaths.add(GalleryData(id , photoUrl , type , title , date , 0))
+//                    }
+                    imagePaths.add(GalleryData(id , photoUrl , type , title , date , 0))
 
                 } while (cursor.moveToNext())
 

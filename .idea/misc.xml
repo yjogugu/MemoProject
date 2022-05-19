@@ -23,9 +23,13 @@
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/item_calendar_memo_layout.xml" value="0.5" />
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/item_drawer.xml" value="0.37907608695652173" />
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/item_gallery_image.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/item_layout_color.xml" value="0.3283514492753623" />
+        <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/item_main_layout.xml" value="0.3283514492753623" />
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/item_memo_layout.xml" value="0.3754528985507246" />
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/item_memo_linear_layout.xml" value="0.37681159420289856" />
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/item_setting_layout.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/item_sub_count_layout.xml" value="0.3283514492753623" />
+        <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/item_sub_layout.xml" value="0.3283514492753623" />
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/item_test_layout.xml" value="0.3234375" />
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/item_title_include.xml" value="0.37916666666666665" />
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/item_user_layout.xml" value="0.3145833333333333" />
@@ -33,6 +37,7 @@
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/layout/user_fragment.xml" value="0.30978260869565216" />
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/menu/friendsettingmenu.xml" value="0.24583333333333332" />
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/menu/mainbuttommenu.xml" value="0.5451282051282051" />
+        <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/menu/memomenu.xml" value="0.5536458333333333" />
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/menu/scalingmenu.xml" value="0.3703125" />
         <entry key="..\:/AndroidStudioProjects_TEST/PotfolioProject/app/src/main/res/xml/file_paths.xml" value="0.353125" />
       </map>

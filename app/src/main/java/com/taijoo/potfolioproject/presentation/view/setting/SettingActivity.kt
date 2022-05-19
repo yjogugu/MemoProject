@@ -350,15 +350,10 @@ class SettingActivity : AppCompatActivity(), SettingInterface {
             }
             1 -> {//서버 연동
                 if(!settingViewModel.userData.value!!.network_state){
-
-//                    val intent = Intent(applicationContext,MyService::class.java)
-//                    startService(intent)
                     signIn()//구글 로그인
 
                 }
                 else{
-//                    val intent = Intent(applicationContext,MyService::class.java)
-//                    stopService(intent)
                     val customDefaultDialog = CustomDefaultDialog(this,getString(R.string.customDialog_title_1),getString(R.string.customDialog_content_1))
 
                     customDefaultDialog.setDialogListener(object : CustomDefaultDialog.CustomDialogListener{

@@ -4,4 +4,9 @@
         <item>프로필 사진 변경</item>
         <item>이름 변경</item>
     </string-array>
+
+    <string-array name = "GalleryItemSelect">
+        <item>사진 촬영</item>
+        <item>영상 촬영</item>
+    </string-array>
 </resources>

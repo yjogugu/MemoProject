@@ -21,11 +21,7 @@ import java.util.logging.Handler
 import kotlin.collections.ArrayList
 
 
-class MemoAdapter(
-    val context: Context,
-    private val layoutManager: GridLayoutManager,
-    var memoDeleteClickInterface: MemoDeleteClickInterface
-)
+class MemoAdapter(val context: Context, private val layoutManager: GridLayoutManager, var memoDeleteClickInterface: MemoDeleteClickInterface)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(), ItemTouchHelperListener {
 
     var item : MutableList<Memo> = ArrayList()
