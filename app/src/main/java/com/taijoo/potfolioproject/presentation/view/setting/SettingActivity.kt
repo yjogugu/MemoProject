@@ -215,9 +215,6 @@ class SettingActivity : AppCompatActivity(), SettingInterface {
     @RequiresApi(Build.VERSION_CODES.P)
     fun onGalleryClick(){
         val intent : Intent = Intent(this, GalleryActivity::class.java)
-        binding.collapsingToolbar.setOnClickListener {
-
-        }
         //startActivityForResult 대신 사용
         resultLauncher.launch(intent)
 
@@ -242,6 +239,7 @@ class SettingActivity : AppCompatActivity(), SettingInterface {
             val data: Intent? = result.data
             val uri = data!!.getStringExtra("uri")
 
+//            Log.e("여기","ㅇㅇ"+uri)
             settingViewModel.setUserProfile(uri!!)
 
         }

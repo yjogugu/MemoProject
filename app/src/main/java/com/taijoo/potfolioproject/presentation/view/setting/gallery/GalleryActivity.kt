@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.taijoo.potfolioproject.R
 import com.taijoo.potfolioproject.data.model.FolderData
 import com.taijoo.potfolioproject.databinding.ActivityGalleryBinding
+import com.taijoo.potfolioproject.presentation.view.setting.SettingActivity
 import com.taijoo.potfolioproject.util.SnackbarCustom
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -76,6 +77,8 @@ class GalleryActivity : AppCompatActivity() , GalleryInterface {
         galleryCursor = GalleryCursor()
 
         init()
+
+
     }
 
     @SuppressLint("NewApi", "DiscouragedPrivateApi")
@@ -92,6 +95,8 @@ class GalleryActivity : AppCompatActivity() , GalleryInterface {
 
         binding.titleAppbar.psvTitle.setIsFocusable(true)
 
+        binding.titleAppbar.tvOk.visibility = View.VISIBLE
+
 
         adapter = GalleryAdapter(this,0,galleryInterface)
         binding.rvGallery.setHasFixedSize(true)
@@ -101,9 +106,19 @@ class GalleryActivity : AppCompatActivity() , GalleryInterface {
         requestPermissions()
 
         psvTitleOnClick()
+
+        onOkClick()//사진 선택 완료
     }
 
+    private fun onOkClick(){
+        binding.titleAppbar.tvOk.setOnClickListener {
 
+            val intent = Intent(this , SettingActivity::class.java)
+            intent.putExtra("uri",viewModel.uriList[0].toString())
+            setResult(RESULT_OK,intent)
+            finish()
+        }
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     fun psvTitleOnClick(){
 
@@ -189,6 +204,7 @@ class GalleryActivity : AppCompatActivity() , GalleryInterface {
 
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onImageClick(position : Int, list: ArrayList<Uri>) {
+        viewModel.uriList = list
         if(position == 0){//카메라 선택
 
             galleryItemSelect()

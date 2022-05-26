@@ -95,7 +95,7 @@ class SettingViewModel(application: Application) : AndroidViewModel(application)
 
                 }
                 false ->{
-                    Log.e("여기","ㄴㄴ")
+
                 }
             }
 
@@ -146,7 +146,8 @@ class SettingViewModel(application: Application) : AndroidViewModel(application)
     @RequiresApi(Build.VERSION_CODES.P)
      fun imageUpload(userSeq : String ,email : String , profile : String){
 
-        GlobalScope.launch(Dispatchers.IO) {
+
+        CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
 
             val image_name = "IMG" + "_" + userSeq + "_" + email + ".jpg"
 
@@ -172,8 +173,17 @@ class SettingViewModel(application: Application) : AndroidViewModel(application)
             val part: MultipartBody.Part = MultipartBody.Part.createFormData("uploaded_file", f.name, fileReqBody)
             val description: RequestBody = f.asRequestBody()
 
-            server_api.uploadProfile(part,description,userSeq.toInt())//서버에 프로필사진 업로드드
+            val response = server_api.uploadProfile(part,description,userSeq.toInt())//서버에 프로필사진 업로드드
 
+            when(response.isSuccessful){
+                true->{
+                    cancel()
+                }
+                false->{
+
+                }
+
+            }
         }
 
     }

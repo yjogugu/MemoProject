@@ -114,41 +114,37 @@ class MainActivity : AppCompatActivity() ,MemoDeleteClickInterface{
         binding.tivCheckCount.setCharacterLists(TickerUtils.provideNumberList())
 
         //User Livedata 옵저블 패턴
-        viewModel.userData.observe(this,{
-            if(it.network_state){
+        viewModel.userData.observe(this) {
+            if (it.network_state) {
                 binding.itemDrawer.llFriend.visibility = View.VISIBLE
 //                val intent = Intent(applicationContext, MyService::class.java)
 //                startService(intent)
-            }
-            else{
+            } else {
                 binding.itemDrawer.llFriend.visibility = View.GONE
             }
-        })
+        }
 
 
         //Memo Livedata 옵저블 패턴
-        viewModel.getMemoData(0, start).observe(this, { memoData ->
+        viewModel.getMemoData(0, start).observe(this) { memoData ->
 
             if (viewModel.getDataType() == 0) {//default
                 adapter.setData(memoData as ArrayList<Memo>)
 
-            }
-            else if (viewModel.getDataType() == 1) {//메모 생성
-                if(adapter.itemCount > 0){
-                    if(memoData[0] != adapter.item[0]){
+            } else if (viewModel.getDataType() == 1) {//메모 생성
+                if (adapter.itemCount > 0) {
+                    if (memoData[0] != adapter.item[0]) {
                         adapter.setInsert(memoData[0])
                         binding.rvMemo.scrollToPosition(0)
                         viewModel.setDataType(-1)
                     }
-                }
-                else{
+                } else {
                     adapter.setInsert(memoData[0])
                     viewModel.setDataType(-1)
                 }
 
 
-            }
-            else if (viewModel.getDataType() == 2) {//메모 삭제
+            } else if (viewModel.getDataType() == 2) {//메모 삭제
 
                 adapter.removeItem(viewModel.delete_item)
                 start -= viewModel.delete_item.size
@@ -156,12 +152,11 @@ class MainActivity : AppCompatActivity() ,MemoDeleteClickInterface{
                 viewModel.getDelete_string(viewModel._check_count.value!!)
                 viewModel.delete_item = ArrayList()
 
-            }
-            else if(viewModel.getDataType() == 3){//큐브수정
-                adapter.updateData(memoData[viewModel.adapter_position],viewModel.adapter_position)
+            } else if (viewModel.getDataType() == 3) {//큐브수정
+                adapter.updateData(memoData[viewModel.adapter_position], viewModel.adapter_position)
 
             }
-        })
+        }
 
 
         //플로팅버튼 셋팅

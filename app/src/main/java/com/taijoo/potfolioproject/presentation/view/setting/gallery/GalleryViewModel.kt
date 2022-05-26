@@ -2,6 +2,7 @@ package com.taijoo.potfolioproject.presentation.view.setting.gallery
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.*
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -17,6 +18,7 @@ class GalleryViewModel(application: Application) : AndroidViewModel(application)
     @SuppressLint("StaticFieldLeak")
     private val context = getApplication<Application>().applicationContext
 
+    var uriList = ArrayList<Uri>()
 
     //사진 , 동영상 불러오기
     fun getGalleryPath(galleryCursor : GalleryCursor, type : Int, folder : String , pageSize : Int) : Flow<PagingData<GalleryData>>{
