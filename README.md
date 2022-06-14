@@ -1,5 +1,3 @@
-<meta property="og:image" content="https://user-images.githubusercontent.com/46445272/173505328-a11f85fc-6280-4de6-9e03-319df758db2d.gif" />
-
 # PotfolioProject
 메모앱을 만들고있습니다.
 
