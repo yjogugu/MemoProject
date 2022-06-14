@@ -20,7 +20,7 @@
 
 구글 로그인을 이용해 사용자 정보를 가져옵니다.
 
-![potfolio3-1](https://user-images.githubusercontent.com/46445272/173505484-15c271ee-bfad-416e-959c-bffcf7ae4ebf.gif)
+![potfolio3-1](https://user-images.githubusercontent.com/46445272/173505789-02e40bd9-5a9d-4e48-b910-25467ee4eefe.gif)
 
 
 Gallery View 는 사진,동영상을 갖고 옵니다
