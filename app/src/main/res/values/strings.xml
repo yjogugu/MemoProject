@@ -1,8 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">PotfolioProject</string>
 
-<!--    <string name="server_client_id" translatable="false">288452856874-231cpm8tbkv5uqmgughav04f8agpeuni.apps.googleusercontent.com</string>-->
-    <string name="server_client_id" translatable="false">162510805212-hmvk8tfikf2qevaqug5norgo1v7q0h5a.apps.googleusercontent.com</string>
+    <string name="server_client_id" translatable="false">googleKey</string>
 
     <string name="add">추가</string>
     <string name="minus">빼기</string>
