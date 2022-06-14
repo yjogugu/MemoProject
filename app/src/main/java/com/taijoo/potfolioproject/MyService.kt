@@ -15,12 +15,10 @@ class MyService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.e("여기","서비스 onCreate")
 
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.e("여기","서비스 onStartCommand")
         if(intent == null){
             return START_STICKY
         }
@@ -29,7 +27,6 @@ class MyService : Service() {
     }
 
     override fun onBind(intent: Intent): IBinder? {
-        Log.e("여기","서비스 onBind")
         return null
     }
 

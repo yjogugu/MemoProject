@@ -15,7 +15,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.room.migration.Migration
 
 
-@Database(entities = [User::class  , Memo::class  , CalendarEntity::class], version = 4 , exportSchema = false)
+@Database(entities = [User::class  , Memo::class  , CalendarEntity::class], version = 6 , exportSchema = false)
 @TypeConverters(UserConverters::class)
 abstract class UserDB : RoomDatabase(){
 
@@ -28,7 +28,7 @@ abstract class UserDB : RoomDatabase(){
         private var INSTANCE : UserDB? = null
 
 
-        val MIGRATION: Migration = object : Migration(1, 2) {
+        private val MIGRATION: Migration = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL(
                     "CREATE TABLE IF NOT EXISTS CalendarBackup (" +
@@ -48,7 +48,7 @@ abstract class UserDB : RoomDatabase(){
             }
         }
 
-        val MIGRATION2_3: Migration = object : Migration(2, 3) {
+        private val MIGRATION2_3: Migration = object : Migration(2, 3) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL(
                     "CREATE TABLE IF NOT EXISTS CalendarBackup (" +
@@ -68,7 +68,7 @@ abstract class UserDB : RoomDatabase(){
             }
         }
 
-        val MIGRATION3_4: Migration = object : Migration(3, 4) {
+        private val MIGRATION3_4: Migration = object : Migration(3, 4) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL(
                     "CREATE TABLE IF NOT EXISTS CalendarBackup (" +
@@ -96,7 +96,7 @@ abstract class UserDB : RoomDatabase(){
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
                         UserDB::class.java, "User.db")
                         .addMigrations(MIGRATION,MIGRATION2_3,MIGRATION3_4)
-//                            .fallbackToDestructiveMigration()
+                        .fallbackToDestructiveMigration()
                         .allowMainThreadQueries()
                         .build()
                 }

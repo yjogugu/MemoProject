@@ -82,6 +82,9 @@ class SettingActivity : AppCompatActivity(), SettingInterface {
 
     lateinit var mGoogleSignInClient  : GoogleSignInClient//구글로그인 클라이언트
 
+    companion object{
+        const val TAG = "SettingActivity"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -239,7 +242,6 @@ class SettingActivity : AppCompatActivity(), SettingInterface {
             val data: Intent? = result.data
             val uri = data!!.getStringExtra("uri")
 
-//            Log.e("여기","ㅇㅇ"+uri)
             settingViewModel.setUserProfile(uri!!)
 
         }
@@ -473,7 +475,7 @@ class SettingActivity : AppCompatActivity(), SettingInterface {
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.e("여기", "signInResult:failed code=" + e.statusCode)
+            Log.e(TAG, "signInResult:failed code=" + e.statusCode)
         }
     }
 
